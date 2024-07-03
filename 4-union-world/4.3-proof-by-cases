@@ -1,0 +1,4 @@
+intro x h3
+cases' h3 with h31 h32
+exact h1 h31
+exact h2 h32

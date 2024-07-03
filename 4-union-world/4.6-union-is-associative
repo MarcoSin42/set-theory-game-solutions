@@ -1,0 +1,18 @@
+ext x
+apply Iff.intro
+intro h1
+cases' h1 with haob hc
+cases' haob with ha hb
+apply Or.inl ha
+right
+exact Or.inl hb
+right
+exact Or.inr hc
+intro h1
+cases' h1 with ha hboc
+left
+exact Or.inl ha
+cases' hboc with hb hc
+left
+exact Or.inr hb
+exact Or.inr hc

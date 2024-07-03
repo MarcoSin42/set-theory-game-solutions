@@ -1,0 +1,4 @@
+intro x h1
+cases' h1 with ha hb
+exact Or.inr ha
+exact Or.inl hb
