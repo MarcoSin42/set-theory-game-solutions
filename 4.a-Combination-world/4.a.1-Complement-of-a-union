@@ -1,0 +1,16 @@
+apply Subset.antisymm
+intro x h1
+rewrite [mem_compl_iff] at h1
+rewrite [mem_union] at h1
+push_neg at h1
+rewrite [mem_inter_iff]
+rewrite [mem_compl_iff]
+rewrite [mem_compl_iff]
+exact h1
+intro x h
+rewrite [mem_compl_iff]
+rewrite [mem_union]
+push_neg
+rewrite [mem_inter_iff] at h
+rewrite [mem_compl_iff, mem_compl_iff] at h
+exact h

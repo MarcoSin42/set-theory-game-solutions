@@ -1,0 +1,8 @@
+intro x ha
+have hAC : x ∈ A ∪ C := Or.inl ha
+have hBC : x ∈ B ∪ C := h1 hAC
+cases' hBC with hb hc
+exact hb
+have hanc : x ∈ A ∩ C := And.intro ha hc
+have bnc : x ∈ B ∩ C := h2 hanc
+exact bnc.left

@@ -1,0 +1,23 @@
+apply Subset.antisymm
+intro x h
+cases' h with h1a h1bnc
+rewrite [mem_inter_iff]
+rewrite [mem_union, mem_union]
+have h1ab : x ∈ A ∨ x ∈ B := Or.inl h1a
+have h1ac : x ∈ A ∨ x ∈ C := Or.inl h1a
+exact And.intro h1ab h1ac
+have h1b : x ∈ B := h1bnc.left
+have h1c : x ∈ C := h1bnc.right
+rewrite [mem_inter_iff, mem_union, mem_union]
+have h1aob : x ∈ A ∨ x ∈ B := Or.inr h1b
+have h1aoc : x ∈ A ∨ x ∈ C := Or.inr h1c
+exact And.intro h1aob h1aoc
+intro x h
+have h1aob : x ∈ A ∪ B := h.left
+have h1aoc : x ∈ A ∪ C := h.right
+cases' h1aoc with h1a h1c
+exact Or.inl h1a
+cases' h1aob with h1a h1b
+exact Or.inl h1a
+have h1bc : x ∈ B ∩ C := And.intro h1b h1c
+exact Or.inr h1bc
