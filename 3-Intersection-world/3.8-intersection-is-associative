@@ -1,0 +1,12 @@
+ext x
+apply Iff.intro
+intro
+have h : x ∈ C := a.right
+have h1 : x ∈ B := a.left.right
+have h2 : x ∈ A := a.left.left
+have h3 : x ∈ B ∩ C := And.intro h1 h
+exact And.intro h2 h3
+intro h4
+apply And.intro
+exact And.intro h4.left h4.right.left
+exact h4.right.right

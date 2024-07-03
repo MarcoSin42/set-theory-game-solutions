@@ -1,0 +1,7 @@
+intro a h3
+have h4 : a ∈ B := h1 h3
+have h5 : a ∈ C := h2 h3
+rewrite [mem_inter_iff]
+apply And.intro
+exact h4
+exact h5

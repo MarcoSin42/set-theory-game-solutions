@@ -1,0 +1,2 @@
+have h2 : x ∈ A := h.left
+exact h2

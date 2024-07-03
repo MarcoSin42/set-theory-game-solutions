@@ -1,0 +1,6 @@
+intro a h1
+have h2 : a ∈ A := h1.left
+have h3 : a ∈ B := h1.right
+apply And.intro
+exact h3
+exact h2
