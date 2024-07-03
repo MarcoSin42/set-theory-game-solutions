@@ -1,0 +1,4 @@
+intro a
+intro h3
+have h4 : a \in B := h1 h3
+exact h2 h4
