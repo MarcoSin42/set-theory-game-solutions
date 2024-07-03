@@ -1,0 +1,3 @@
+intro
+have h4 : x \in B := h1 a
+exact h2 h4
