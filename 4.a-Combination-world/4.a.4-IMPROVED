@@ -1,0 +1,7 @@
+rewrite [← compl_compl ((A ∪ B) ∩ (A ∪ C))]
+rewrite [compl_inter]
+rewrite [compl_union A B, compl_union A C]
+rewrite [← inter_distrib_left]
+rewrite [compl_inter]
+rewrite [compl_union, compl_compl, compl_compl, compl_compl]
+rfl
