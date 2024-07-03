@@ -1,0 +1,4 @@
+intro x h2
+rewrite [mem_sInter] at h2
+have h2A := h2 A
+exact h2A h1

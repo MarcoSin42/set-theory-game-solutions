@@ -1,0 +1,28 @@
+ext x
+apply Iff.intro
+intro h1
+intro t
+rewrite [mem_pair t A B]
+intro h2
+cases' h2 with hta htb
+have ha := h1.left
+rewrite [← hta] at ha
+exact ha
+have hb := h1.right
+rewrite [← htb] at hb
+exact hb
+rewrite [mem_sInter]
+intro h
+have hA := h A
+have hB := h B
+have ha : A ∈ {A, B}
+rewrite [mem_pair A A B]
+left
+rfl
+have hb : B ∈ {A, B}
+rewrite [mem_pair B A B]
+right
+rfl
+have a := hA ha
+have b := hB hb
+exact And.intro a b

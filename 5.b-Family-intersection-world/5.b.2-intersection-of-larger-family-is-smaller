@@ -1,0 +1,7 @@
+intro x h2
+rewrite [mem_sInter] at h2
+rewrite [mem_sInter]
+intro t
+intro h3
+have h4 := h1 h3
+exact h2 t h4
