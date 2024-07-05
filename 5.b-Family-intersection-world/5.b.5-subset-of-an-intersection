@@ -1,0 +1,14 @@
+apply Iff.intro
+intro h1
+intro x h2
+intro a h3
+have h4 := h1 h3
+apply h4
+exact h2
+intro h1
+intro x h2
+rewrite [mem_sInter]
+intro f h3
+apply h1
+exact h3
+exact h2
