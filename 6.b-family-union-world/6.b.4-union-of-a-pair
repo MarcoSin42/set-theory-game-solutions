@@ -1,0 +1,27 @@
+apply Subset.antisymm
+intro x h1
+rewrite [mem_sUnion]
+cases' h1 with xa xb
+use A
+rewrite [mem_pair]
+constructor
+left
+rfl
+exact xa
+use B
+constructor
+rewrite [mem_pair]
+right
+rfl
+exact xb
+intro x h1
+rewrite [mem_sUnion] at h1
+obtain ⟨w, hw⟩ := h1
+have wab := hw.left
+have xw := hw.right
+rewrite [mem_pair] at wab
+cases' wab with wa wb
+rewrite [  wa] at xw
+exact Or.inl xw
+rewrite [wb] at xw
+exact Or.inr xw

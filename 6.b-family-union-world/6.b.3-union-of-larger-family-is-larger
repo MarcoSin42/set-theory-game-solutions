@@ -1,0 +1,8 @@
+intro x h2
+obtain ⟨w, hw⟩ := h2
+have wf := hw.left
+have xw := hw.right
+rewrite [mem_sUnion]
+have wg := h1 wf
+apply Exists.intro w
+exact And.intro wg xw

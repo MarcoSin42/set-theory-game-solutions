@@ -1,0 +1,15 @@
+apply Iff.intro
+intro h1 x
+intro h2
+intro w h3
+apply h1
+rewrite [mem_sUnion]
+exact Exists.intro x (And.intro h2 h3)
+intro h1
+intro x h2
+obtain ⟨w, hw⟩ := h2
+have wf := hw.left
+have xw := hw.right
+have wa := h1 w
+have h2 := wa wf
+exact h2 xw

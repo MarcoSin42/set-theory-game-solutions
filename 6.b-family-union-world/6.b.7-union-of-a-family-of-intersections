@@ -1,0 +1,31 @@
+apply Subset.antisymm
+intro a h1
+have aA := h1.left
+have aF := h1.right
+rewrite [mem_sUnion]
+obtain ⟨w, hw⟩  := aF
+apply Exists.intro (A ∩ w)
+constructor
+rewrite [mem_setOf]
+have wf := hw.left
+have aw := hw.right
+have anw : A ∩ w = A ∩ w
+rfl
+exact Exists.intro w (And.intro wf anw)
+constructor
+exact aA
+exact hw.right
+intro x h1
+rewrite [mem_sUnion] at h1
+obtain ⟨w, hw⟩  := h1
+have shwl := hw.left
+have xw := hw.right
+obtain ⟨w1, hw1⟩  := shwl
+have wf := hw1.left
+have wanw := hw1.right
+rewrite [wanw] at xw
+constructor
+exact xw.left
+rewrite [mem_sUnion]
+have xw1 := xw.right
+exact Exists.intro w1 (And.intro wf xw1)

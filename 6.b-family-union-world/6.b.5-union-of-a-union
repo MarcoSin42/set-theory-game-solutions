@@ -1,0 +1,25 @@
+apply Subset.antisymm
+intro x h1
+rewrite [mem_sUnion] at h1
+obtain ⟨w, hw⟩   := h1
+have xw := hw.right
+have wfg := hw.left
+cases' wfg with wf wg
+left
+rewrite [mem_sUnion]
+exact Exists.intro w (And.intro wf xw)
+right
+rewrite [mem_sUnion]
+exact Exists.intro w (And.intro wg xw)
+intro x h1
+rewrite [mem_sUnion]
+obtain ⟨w, hw⟩ := h1
+have wf := hw.left
+have xw := hw.right
+have wfg : w ∈ F ∪ G := Or.inl wf
+exact Exists.intro w (And.intro wfg xw)
+obtain ⟨w, hw⟩  := h
+have wg := hw.left
+have xw := hw.right
+have wfg : w ∈ F ∪ G  := Or.inr wg
+exact Exists.intro w (And.intro wfg xw)
