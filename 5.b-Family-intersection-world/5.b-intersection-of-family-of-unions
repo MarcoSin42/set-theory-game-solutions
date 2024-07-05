@@ -1,0 +1,16 @@
+intro x h2
+rewrite [mem_union]
+by_cases hA : x ∈ A
+exact Or.inl hA
+right
+rewrite [mem_sInter]
+intro f h4
+have h5 := h1 f
+have h6 := h5 h4
+rewrite [mem_sInter] at h2
+have h7 := h2 (A ∪  f)
+have h8 := h7 h6
+cases' h8 with ha hb
+by_contra h8
+exact hA ha
+exact hb
