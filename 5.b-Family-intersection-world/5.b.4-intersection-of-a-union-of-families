@@ -1,0 +1,27 @@
+apply Subset.antisymm
+intro x h1
+constructor
+rewrite [mem_sInter]
+rewrite [mem_sInter] at h1
+intro a h2
+apply h1 a
+have haFG : a ∈ F ∪ G := Or.inl h2
+exact haFG
+rewrite [mem_sInter] at h1
+rewrite [mem_sInter]
+intro a h2
+apply h1 a
+have hGF : a ∈ G ∪ F := Or.inl h2
+rewrite [union_comm G F] at hGF
+exact hGF
+intro x h1
+have hF := h1.left
+have hG := h1.right
+rewrite [mem_sInter]
+intro a h2
+cases' h2 with aF aG
+rewrite [mem_sInter] at hF
+apply hF a
+exact aF
+apply hG a
+exact aG
