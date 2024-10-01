@@ -1,0 +1,15 @@
+intro x h2
+rw [mem_sUnion]
+rw [mem_inter_iff] at h2
+have h3 := h2.left
+have h4 := h2.right
+rw [mem_sUnion] at h3
+rw [mem_sInter] at h4
+obtain ⟨w, hw⟩ := h3
+have h5 := (h1 w) hw.left
+obtain ⟨w2, hw2⟩ := h5
+have h6 := (h4 w2) hw2.left
+apply Exists.intro (w ∩ w2)
+constructor
+exact hw2.right
+exact And.intro hw.right h6
