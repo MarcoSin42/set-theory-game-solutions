@@ -1,0 +1,22 @@
+intro x h1
+have h2 := h1.left
+have h3 := h1.right
+rw [mem_sUnion] at h2
+rw [mem_compl_iff, mem_sInter] at h3
+push_neg at h3
+rw [mem_sUnion]
+obtain ⟨w, hw⟩ := h2
+obtain ⟨w2, hw2⟩ := h3
+apply Exists.intro (w ∩ w2ᶜ)
+constructor
+rw [mem_setOf]
+apply Exists.intro w
+constructor
+exact hw.left
+apply Exists.intro w2
+constructor
+exact hw2.left
+rfl
+constructor
+exact hw.right
+exact hw2.right

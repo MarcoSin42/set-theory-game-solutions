@@ -1,0 +1,28 @@
+apply Subset.antisymm
+intro x h1
+rw [mem_sInter]
+intro t
+intro h2
+rw [mem_compl_iff] at h1
+rw [mem_sUnion] at h1
+push_neg at h1
+rw [mem_setOf] at h2
+have h3 := h1 tᶜ h2
+rw [mem_compl_iff] at h3
+by_contra h4
+exact h3 h4
+intro x h1
+rw [mem_sInter] at h1
+rw [mem_compl_iff]
+rw [mem_sUnion]
+push_neg
+intro t
+intro h2
+have h3 := h1 tᶜ
+have h4 : tᶜ ∈ {s | sᶜ ∈ F}
+rw [mem_setOf]
+rw [compl_compl]
+exact h2
+have h5 := h3 h4
+by_contra h6
+exact h5 h6

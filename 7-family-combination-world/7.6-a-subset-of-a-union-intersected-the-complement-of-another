@@ -1,0 +1,30 @@
+intro x h2
+rw [mem_sUnion]
+rw [mem_inter_iff] at h2
+have h3 := h2.left
+have h4 := h2.right
+rw [mem_sUnion] at h3
+rw [mem_sUnion] at h4
+obtain ⟨w, hw⟩ := h3
+obtain ⟨w2, hw2⟩ := h4
+by_cases h5 : (w ∈ G)
+apply Exists.intro w
+constructor
+exact And.intro hw.left h5
+exact hw.right
+rw [←mem_compl_iff] at h5
+have h6 : w ∈ (F ∩ Gᶜ)
+exact And.intro hw.left h5
+have h7 : (∃ w ∈ (F ∩ Gᶜ), x ∈ w) := Exists.intro w (And.intro h6 hw.right)
+rw [← mem_sUnion] at h7
+have h8 := h1 h7
+have h9 := h8.left
+have h10 := h8.right
+rw [mem_sUnion] at h9
+rw [mem_compl_iff] at h10
+rw [mem_sUnion] at h10
+push_neg at h10
+have h11 := (h10 w2) hw2.left
+have h12 := h11 hw2.right
+apply False.elim
+exact h12

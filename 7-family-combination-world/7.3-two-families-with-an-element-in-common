@@ -1,0 +1,13 @@
+obtain ⟨w, hw⟩ := h2
+have h3 := (h1 w) hw.left
+obtain ⟨w2, hw2⟩ := h3
+have h4 := hw.right
+have h5 := (h4 w2) hw2.left
+have h6 := hw2.right
+have h7 := Subset.antisymm h5 h6
+apply Exists.intro w
+rw [mem_inter_iff]
+have h8 := hw.left
+have h9 := hw2.left
+rw [h7] at h9
+exact And.intro h8 h9

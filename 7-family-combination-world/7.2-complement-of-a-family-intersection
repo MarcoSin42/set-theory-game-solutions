@@ -1,0 +1,28 @@
+apply Subset.antisymm
+intro x h1
+rw [mem_sUnion]
+rw [mem_compl_iff] at h1
+rw [mem_sInter] at h1
+push_neg at h1
+obtain ⟨w, hw⟩ := h1
+apply Exists.intro wᶜ
+have h1 := hw.left
+have h2 := hw.right
+constructor
+rw [mem_setOf]
+rw [compl_compl]
+exact h1
+exact h2
+intro x h1
+rw [mem_compl_iff]
+rw [mem_sInter]
+push_neg
+rw [mem_sUnion] at h1
+obtain ⟨w, hw⟩ := h1
+apply Exists.intro wᶜ
+have h1 := hw.left
+rw [mem_setOf] at h1
+constructor
+exact h1
+by_contra h2
+exact h2 hw.right

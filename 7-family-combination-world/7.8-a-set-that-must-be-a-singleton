@@ -1,0 +1,77 @@
+-- this is a proof by case analysis for A having 0, 1 and 2 or more Elements.
+-- there is probably a better proof but this is the only one I managed to do.
+by_cases h2 : ∃x, x ∈ A
+obtain ⟨w, hw⟩ := h2
+by_cases h3 : ∃y, y ∈ A ∧ y ≠ w
+obtain ⟨w2, hw2⟩ := h3
+have h2 := h1 {s | ∃x ∈ A, s = {x}}
+have h3 : ⋃₀ {s | ∃x ∈ A, s = {x}} = A
+apply Subset.antisymm
+intro x h4
+rw [mem_sUnion] at h4
+obtain ⟨w3, hw3⟩ := h4
+have h5 := hw3.left
+rw [mem_setOf] at h5
+obtain ⟨w4, hw4⟩ := h5
+have h3 := hw4.right
+have h4 := hw3.right
+rw [h3, mem_singleton_iff] at h4
+rw [← h4] at hw4
+exact hw4.left
+intro x h3
+rw [mem_sUnion]
+apply Exists.intro {x}
+constructor
+rw [mem_setOf]
+apply Exists.intro x
+constructor
+exact h3
+rfl
+rw [mem_singleton_iff]
+have h4 := h2 h3
+rw [mem_setOf] at h4
+obtain ⟨w3, hw3⟩ := h4
+have h4 := hw3.left
+have h5 := hw3.right
+rw [h5] at hw
+rw [h5] at hw2
+have h6 := hw2.left
+rw [mem_singleton_iff] at hw
+rw [mem_singleton_iff] at h6
+have h7 := hw2.right
+rw [hw, h6] at h7
+have h8 : w3 = w3
+rfl
+have h9 := h7 h8
+apply False.elim
+exact h9
+apply Exists.intro w
+push_neg at h3
+ext
+apply Iff.intro
+intro h2
+have h4 := (h3 x) h2
+exact h4
+intro h2
+rw [mem_singleton_iff] at h2
+rw [←h2] at hw
+exact hw
+push_neg at h2
+have h3 := h1 {s | False}
+have h4 : (⋃₀ {s | False} = A)
+apply Subset.antisymm
+intro x h5
+rw [mem_sUnion] at h5
+obtain ⟨w, hw⟩ := h5
+have h6 := hw.left
+rw [mem_setOf] at h6
+apply False.elim
+exact h6
+intro x h5
+have h6 := (h2 x) h5
+apply False.elim
+exact h6
+have h5 := h3 h4
+rw [mem_setOf] at h5
+apply False.elim
+exact h5
